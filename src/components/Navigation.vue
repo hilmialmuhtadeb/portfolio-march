@@ -8,7 +8,7 @@
       <span></span>
       <span></span>
     </div>
-    <ul :class="[{active: isNavbarShow}]">
+    <ul :class="[{active: isNavbarVisible}]">
       <li>
         <router-link to="/">HOME</router-link>
       </li>
@@ -29,16 +29,17 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
   export default {
     name: 'navigation',
-    data() {
-      return {
-        isNavbarShow: false
-      }
+    computed: {
+      ...mapGetters(['isNavbarVisible'])
     },
     methods: {
-      navClick () {
-        return this.isNavbarShow = !this.isNavbarShow
+      ...mapMutations(['setNavbarVisible']),
+      navClick (event) {
+        this.setNavbarVisible()
+        event.stopPropagation()
       }
     }
   }

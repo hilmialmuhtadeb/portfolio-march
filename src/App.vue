@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" @click="hideNavbar">
     <navigation />
     <router-view/>
   </div>
@@ -7,10 +7,23 @@
 
 <script>
 import Navigation from '@/components/Navigation'
+import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   components: {
     Navigation
+  },
+  computed: {
+    ...mapGetters(['isNavbarVisible'])
+  },
+  methods: {
+    ...mapMutations(['setNavbarVisible']),
+    hideNavbar() {
+      if (this.isNavbarVisible ) {
+        this.setNavbarVisible()
+      }
+      return
+    }
   }
 }
 </script>

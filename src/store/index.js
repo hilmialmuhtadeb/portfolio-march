@@ -14,11 +14,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    contacts: null
+    contacts: null,
+    isNavbarVisible: false
   },
   mutations: {
     setContacts (state, payload) {
       state.contacts = payload
+    },
+    setNavbarVisible (state) {
+      state.isNavbarVisible = !state.isNavbarVisible
     }
   },
   actions: {
@@ -30,6 +34,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    contacts: state => state.contacts
+    contacts: state => state.contacts,
+    isNavbarVisible: state => state.isNavbarVisible
   }
 })
