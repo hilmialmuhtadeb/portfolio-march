@@ -2,7 +2,7 @@
   <div class="home">
     <div class="profile">
       <div class="profile__pitch">
-        <h2>Halo Guys, Hilmi here 👋 </h2>
+        <h2>Halo Guys, I'am Hilmi 👋 </h2>
         <p>I am a student majoring in informatics engineering. I am into web development since 2020 and I am interested in the development of technology in it. Besides that I also like to explore the beauty of nature with my friends and share ideas with them.</p>
         <p>Currently, I'm doing an internship program as a <strong>Software Engineer</strong> at <a target="_blank" href="https://www.blibli.com/">blibli.com</a>.</p>
       </div>
@@ -28,7 +28,7 @@ export default {
     ContactCard
   },
   methods: {
-    ...mapActions(['getContacts']),
+    ...mapActions(['getContacts'])
   },
   computed: {
     ...mapGetters(['contacts'])
@@ -43,8 +43,8 @@ export default {
   @import '../assets/_shared.scss';
 
   .home {
-    padding: 2em 8em;
-
+    padding: 4em 0;
+    
     .profile {
       display: grid;
       grid-template-columns: 3fr 1fr;
@@ -84,6 +84,40 @@ export default {
       display: grid;
       gap: 1em;
       grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .home {
+      .contact {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .home {
+      padding: 2em 0;
+      
+      .profile {
+        grid-template-columns: 1fr;
+
+        &__picture {
+          display: none;
+        }
+      }
+
+      .contact {
+        margin-top: 2em;
+      }
+    }
+  }
+
+  @media screen and (max-width: 580px) {
+    .home {
+      .contact {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
   }
 </style>

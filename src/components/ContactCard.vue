@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '../assets/_shared.scss';
 
   a {
@@ -59,6 +59,15 @@ export default {
       p {
         font-size: 1rem;
         margin-top: .5em;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    a {
+      .contact-card {
+        padding: 1em .4em;
+        font-size: 1.2em;
       }
     }
   }

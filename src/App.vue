@@ -32,5 +32,24 @@ export default {
   color: $black;
   max-width: 80%;
   margin: auto;
+  padding: 2em 8em;
+}
+
+@media screen and (max-width: 1440px) {
+  #app {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  #app {
+    padding: 2em 4em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #app {
+    padding: 2em 1em;
+  }
 }
 </style>
