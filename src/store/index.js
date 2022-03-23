@@ -1,28 +1,25 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import MockAdapter from 'axios-mock-adapter'
 import axios from 'axios'
-import routeMock from '../api/mock'
-
-const mock = new MockAdapter(axios)
-
-mock.onGet('/api/contacts').reply(200, {
-  ...routeMock[0].response.data
-})
+import '../api/mock/mock.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isNavbarVisible: false,
     contacts: null,
-    isNavbarVisible: false
+    projects: null
   },
   mutations: {
+    setNavbarVisible (state) {
+      state.isNavbarVisible = !state.isNavbarVisible
+    },
     setContacts (state, payload) {
       state.contacts = payload
     },
-    setNavbarVisible (state) {
-      state.isNavbarVisible = !state.isNavbarVisible
+    setProjects (state, payload) {
+      state.projects = payload
     }
   },
   actions: {
@@ -31,10 +28,17 @@ export default new Vuex.Store({
         .then(response => {
           commit('setContacts', response.data)
         })
+    },
+    getProjects ({commit}) {
+      axios.get('/api/projects')
+        .then(response => {
+          commit('setProjects', response.data)
+        })
     }
   },
   getters: {
+    isNavbarVisible: state => state.isNavbarVisible,
     contacts: state => state.contacts,
-    isNavbarVisible: state => state.isNavbarVisible
+    projects: state => state.projects
   }
 })
