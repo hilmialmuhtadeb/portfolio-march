@@ -20,26 +20,22 @@
 
 <script>
 import ContactCard from '../components/ContactCard.vue'
-import { mapActions, mapGetters } from 'vuex'
+import contacts from "../data/contacts.json"
 
 export default {
   name: 'Home',
   components: {
-    ContactCard
+    ContactCard,
   },
-  methods: {
-    ...mapActions(['getContacts'])
-  },
-  computed: {
-    ...mapGetters(['contacts'])
-  },
-  created() {
-    this.getContacts()
+  data() {
+    return {
+      contacts
+    }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '../assets/_shared.scss';
 
   .home {

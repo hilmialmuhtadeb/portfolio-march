@@ -42,18 +42,45 @@ export default {
       
       img {
         width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
     }
 
     &__description {
       p {
         margin: 1em 0;
-        color:lighten($color: black, $amount: 40);
+        color:lighten($color: black, $amount: 50);
+      }
+
+      p:nth-child(3) {
+        font-weight: 500;
       }
 
       a {
         text-decoration: underline 3px solid $green;
         color: $black;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .project-card {
+      gap: 1em;
+    }
+  }
+
+  @media screen and (max-width: 580px) {
+    .project-card {
+      grid-template-columns: 1fr;
+      box-shadow: $box-shadow;
+
+      &__thumbnail {
+        box-shadow: none;
+      }
+
+      &__description {
+        padding: 1em 1em 2em;
       }
     }
   }

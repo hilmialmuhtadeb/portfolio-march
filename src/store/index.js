@@ -1,25 +1,31 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import '../api/mock/mock.js'
 
 Vue.use(Vuex)
+
+const BASE_URL = 'https://api-portfolio-hilmi.herokuapp.com'
 
 export default new Vuex.Store({
   state: {
     isNavbarVisible: false,
-    contacts: null,
-    projects: null
+    projects: null,
+    messages: null,
+    stories: [],
+    achievments: []
   },
   mutations: {
     setNavbarVisible (state) {
       state.isNavbarVisible = !state.isNavbarVisible
     },
-    setContacts (state, payload) {
-      state.contacts = payload
-    },
     setProjects (state, payload) {
       state.projects = payload
+    },
+    setMessages (state, payload) {
+      state.messages = payload
+    },
+    addNewMessageToState (state, payload) {
+      state.messages.unshift(payload)
     }
   },
   actions: {
@@ -30,15 +36,32 @@ export default new Vuex.Store({
         })
     },
     getProjects ({commit}) {
-      axios.get('/api/projects')
+      axios.get(`${BASE_URL}/api/projects`)
         .then(response => {
-          commit('setProjects', response.data)
+          commit('setProjects', response.data.data)
+        })
+    },
+    getMessages ({commit}) {
+      axios.get(`${BASE_URL}/api/messages`)
+        .then(response => {
+          commit('setMessages', response.data.data)
+        })
+    },
+    addMessage ({commit}, newMessage) {
+      axios.post(`${BASE_URL}/api/messages`, {
+        message: newMessage
+      })
+        .then(res => {
+          commit('addNewMessageToState', res.data.data)
         })
     }
   },
   getters: {
     isNavbarVisible: state => state.isNavbarVisible,
     contacts: state => state.contacts,
-    projects: state => state.projects
+    projects: state => state.projects,
+    messages: state => state.messages,
+    stories: state => state.stories,
+    achievments: state => state.achievments
   }
 })

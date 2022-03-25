@@ -1,13 +1,26 @@
 <template>
-  <h1>achievments page</h1>
+  <div class="achievments">
+    <div v-if="achievments.length > 0">
+
+    </div>
+    <div v-else>
+      <p>No achievment already. Keep spirit!</p>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex'
 
+export default {
+  computed: {
+    ...mapGetters(['achievments'])
+  }
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  .achievments {
+    padding: 4em 0;
+  }
 </style>
