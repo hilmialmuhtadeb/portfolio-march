@@ -9,6 +9,7 @@ const BASE_URL = 'https://api-portfolio-hilmi.herokuapp.com'
 export default new Vuex.Store({
   state: {
     isNavbarVisible: false,
+    isAddMessageSuccess: false,
     projects: null,
     messages: null,
     stories: [],
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     addNewMessageToState (state, payload) {
       state.messages.unshift(payload)
+    },
+    setIsAddMessageSuccess (state, condition) {
+      state.isAddMessageSuccess = condition
     }
   },
   actions: {
@@ -51,13 +55,15 @@ export default new Vuex.Store({
       axios.post(`${BASE_URL}/api/messages`, {
         message: newMessage
       })
-        .then(res => {
-          commit('addNewMessageToState', res.data.data)
+        .then(response => {
+          commit('setIsAddMessageSuccess', true)
+          commit('addNewMessageToState', response.data.data)
         })
     }
   },
   getters: {
     isNavbarVisible: state => state.isNavbarVisible,
+    isAddMessageSuccess: state => state.isAddMessageSuccess,
     contacts: state => state.contacts,
     projects: state => state.projects,
     messages: state => state.messages,

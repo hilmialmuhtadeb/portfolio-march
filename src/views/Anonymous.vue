@@ -2,19 +2,18 @@
   <div class="anonymous">
     <h2>Anonymous Message</h2>
     <p>Give me a anonymous message. Your identity will not be known :D</p>
-    <p>The message can be about friendship, joke, work, advice, criticism, education and anything. <strong>tell me anything</strong>, it's your space.</p>
+    <p>The message can be about friendship, joke, work, advice, criticism, education and anything. <strong>tell me
+        anything</strong>, it's your space.</p>
+
     <div class="anonymous__form">
       <input type="text" v-model="newMessage">
       <button @click="addNewMessage">SEND</button>
     </div>
+
     <div class="anonymous__messages">
       <template v-if="isMessagesLoaded">
         <template v-if="messages.length > 0">
-          <p
-            v-for="message in messages"
-            :key="message._id"
-            class="text"
-          >
+          <p v-for="message in messages" :key="message._id" class="text">
             {{ message.message }}
             <span>{{ message.dateCreated }}</span>
           </p>
@@ -27,50 +26,65 @@
         <message-skeleton v-for="i in 4" :key="i" />
       </template>
     </div>
+
+    <notif-alert v-if="isAddMessageSuccess" :status="201" />
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import MessageSkeleton from '../components/MessageSkeleton.vue'
+  import {
+    mapActions,
+    mapGetters,
+    mapMutations
+  } from 'vuex'
+  import MessageSkeleton from '../components/MessageSkeleton.vue'
+  import NotifAlert from '../components/NotifAlert.vue'
 
-export default {
-  components: {
-    MessageSkeleton
-  },
-  data() {
-    return {
-      newMessage: ''
-    }
-  },
-  computed: {
-    ...mapGetters(['messages']),
-    isMessagesLoaded() {
-      if (this.messages) {
-        return true
+  export default {
+    components: {
+      MessageSkeleton,
+      NotifAlert
+    },
+    data() {
+      return {
+        newMessage: ''
       }
-      return false
-    }
-  },
-  methods: {
-    ...mapActions([
-      'getMessages',
-      'addMessage'
-    ]),
-    addNewMessage: async function () {
-      await this.addMessage(this.newMessage)
-      this.newMessage = ''
+    },
+    computed: {
+      ...mapGetters([
+        'messages',
+        'isAddMessageSuccess'
+      ]),
+      isMessagesLoaded() {
+        if (this.messages) {
+          return true
+        }
+        return false
+      }
+    },
+    methods: {
+      ...mapActions([
+        'getMessages',
+        'addMessage'
+      ]),
+      ...mapMutations([
+        'setIsAddMessageSuccess'
+      ]),
+      addNewMessage: function () {
+        this.addMessage(this.newMessage)
+        this.newMessage = ''
+        setTimeout(async () => await this.setIsAddMessageSuccess(false), 5000)
+      }
+    },
+    created() {
       this.getMessages()
     }
-  },
-  created() {
-    this.getMessages()
   }
-}
 </script>
 
 <style lang="scss" scoped>
   @import "../assets/_shared.scss";
+
   .anonymous {
     padding: 4em 0;
 
@@ -84,7 +98,7 @@ export default {
       display: grid;
       grid-template-columns: 5fr 1fr;
 
-      input, 
+      input,
       button {
         padding: 1em;
       }
