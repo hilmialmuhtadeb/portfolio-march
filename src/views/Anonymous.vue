@@ -28,6 +28,7 @@
     </div>
 
     <notif-alert v-if="isAddMessageSuccess" :status="201" />
+    <notif-alert v-if="isAddMessageFailed" :status="400" />
   </div>
 </template>
 
@@ -53,7 +54,8 @@
     computed: {
       ...mapGetters([
         'messages',
-        'isAddMessageSuccess'
+        'isAddMessageSuccess',
+        'isAddMessageFailed'
       ]),
       isMessagesLoaded() {
         if (this.messages) {
@@ -68,12 +70,14 @@
         'addMessage'
       ]),
       ...mapMutations([
-        'setIsAddMessageSuccess'
+        'setIsAddMessageSuccess',
+        'setIsAddMessageFailed'
       ]),
       addNewMessage: function () {
         this.addMessage(this.newMessage)
         this.newMessage = ''
         setTimeout(async () => await this.setIsAddMessageSuccess(false), 5000)
+        setTimeout(async () => await this.setIsAddMessageFailed(false), 5000)
       }
     },
     created() {

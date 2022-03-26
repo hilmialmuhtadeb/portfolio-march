@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     isNavbarVisible: false,
     isAddMessageSuccess: false,
+    isAddMessageFailed: false,
     projects: null,
     messages: null,
     stories: [],
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     },
     setIsAddMessageSuccess (state, condition) {
       state.isAddMessageSuccess = condition
+    },
+    setIsAddMessageFailed (state, condition) {
+      state.isAddMessageFailed = condition
     }
   },
   actions: {
@@ -59,11 +63,15 @@ export default new Vuex.Store({
           commit('setIsAddMessageSuccess', true)
           commit('addNewMessageToState', response.data.data)
         })
+        .catch(() => {
+          commit('setIsAddMessageFailed', true)
+        })
     }
   },
   getters: {
     isNavbarVisible: state => state.isNavbarVisible,
     isAddMessageSuccess: state => state.isAddMessageSuccess,
+    isAddMessageFailed: state => state.isAddMessageFailed,
     contacts: state => state.contacts,
     projects: state => state.projects,
     messages: state => state.messages,

@@ -1,5 +1,5 @@
 <template>
-  <div class="alert">
+  <div class="alert" :class="{danger : isDanger}">
     <h4>{{ title }}</h4>
     <p>{{ description }}</p>
   </div>
@@ -12,9 +12,25 @@ export default {
   },
   data() {
     return {
-      title: 'Success',
-      description: 'New message was added successfully.'  
+      title: '',
+      description: '',
+      isDanger: false
     }
+  },
+  methods: {
+    getAlert() {
+      if (this.props == 200) {
+        this.title = 'Success'
+        this.description = 'New message was added successfully.'
+        return
+      }
+      this.title = 'Failed'
+      this.description = 'Failed to add new message.'
+      this.isDanger = true
+    }
+  },
+  created() {
+    this.getAlert()
   }
 }
 </script>
@@ -39,6 +55,10 @@ export default {
     }
   }
 
+  .alert.danger {
+    border-left: 1em solid red;
+  }
+
   @media screen and (max-width: 1080px) {
     .alert {
       width: 50%;
@@ -49,7 +69,7 @@ export default {
     .alert {
       top: 6em;
       right: 1em;
-      width: 70%;
+      width: 80%;
     }
   }
 
