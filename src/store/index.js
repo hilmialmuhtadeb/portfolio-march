@@ -5,6 +5,7 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const BASE_URL = 'https://api-portfolio-hilmi.herokuapp.com'
+const STORIES_API_URL = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40hilmialmuhtadeb'
 
 export default new Vuex.Store({
   state: {
@@ -13,7 +14,7 @@ export default new Vuex.Store({
     isAddMessageFailed: false,
     projects: null,
     messages: null,
-    stories: [],
+    stories: null,
     achievments: []
   },
   mutations: {
@@ -34,6 +35,9 @@ export default new Vuex.Store({
     },
     setIsAddMessageFailed (state, condition) {
       state.isAddMessageFailed = condition
+    },
+    setStories (state, payload) {
+      state.stories = payload
     }
   },
   actions: {
@@ -65,6 +69,12 @@ export default new Vuex.Store({
         })
         .catch(() => {
           commit('setIsAddMessageFailed', true)
+        })
+    },
+    getStories ({commit}) {
+      axios.get(STORIES_API_URL)
+        .then(response => {
+          commit('setStories', response.data.items)
         })
     }
   },
