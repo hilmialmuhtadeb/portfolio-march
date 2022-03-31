@@ -102,5 +102,12 @@ export default {
         margin-bottom: 1em;
       }
     }
+
+  }
+  
+  @media screen and (max-width: 768px) {
+    .story {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

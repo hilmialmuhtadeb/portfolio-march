@@ -9,7 +9,10 @@
       </div>
     </template>
     <template v-else>
-      <p>LOADING</p>
+      <story-card-skeleton 
+        v-for="i in 3"
+        :key="i"
+      />
     </template>
   </div>
 </template>
@@ -17,10 +20,12 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import StoryCard from '../components/StoryCard.vue'
+import StoryCardSkeleton from '../components/StoryCardSkeleton.vue'
 
 export default {
   components: {
-    StoryCard
+    StoryCard,
+    StoryCardSkeleton
   },
   computed: {
     ...mapGetters(['stories']),
@@ -44,5 +49,10 @@ export default {
   .stories {
     padding: 4em 0;
     gap: 2em;
+  }
+  @media screen and (max-width: 768px) {
+    .stories {
+      padding: 2em 0;
+    }
   }
 </style>
