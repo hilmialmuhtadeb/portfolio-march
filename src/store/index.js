@@ -85,13 +85,13 @@ export default new Vuex.Store({
         })
     },
     getAchievments ({commit}) {
-      axios.get('http://localhost:3000/api/achievments')
+      axios.get(`${BASE_URL}/api/achievments`)
         .then(response => {
           commit('setAchievments', response.data.data)
         })
     },
     addAchievment ({commit}, payload) {
-      axios.post('http://localhost:3000/api/achievments', {
+      axios.post(`${BASE_URL}/api/achievments`, {
         ...payload
       })
         .then(() => {
@@ -102,7 +102,7 @@ export default new Vuex.Store({
         })
     },
     createAuth ({commit}, user) {
-      axios.post('http://localhost:3000/api/auth', {
+      axios.post(`${BASE_URL}/api/auth`, {
         user
       })
         .then(response => {
