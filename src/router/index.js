@@ -5,6 +5,7 @@ import Achievment from '../views/Achievment.vue'
 import Project from '../views/Project.vue'
 import Story from '../views/Story.vue'
 import Anonymous from '../views/Anonymous.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/anonymous',
     name: 'Anonymouse Message',
     component: Anonymous
+  },
+  {
+    path: '/login',
+    name: 'Login Page',
+    component: Login
   }
 ]
 

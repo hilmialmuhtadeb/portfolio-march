@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     getAlert() {
-      if (this.props == 200) {
+      if (this.status == 201) {
         this.title = 'Success'
         this.description = 'New message was added successfully.'
         return
