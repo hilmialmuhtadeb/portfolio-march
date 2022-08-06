@@ -15,8 +15,8 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-import AchievmentForm from '../components/AchievementForm.vue'
-import FormInput from '../components/FormInput.vue'
+import AchievmentForm from '../components/achievment/AchievementForm.vue'
+import FormInput from '../components/shared/atom/FormInput.vue'
 
 export default {
   components: {

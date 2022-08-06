@@ -38,8 +38,8 @@
     mapGetters,
     mapMutations
   } from 'vuex'
-  import MessageSkeleton from '../components/MessageSkeleton.vue'
-  import NotifAlert from '../components/NotifAlert.vue'
+  import MessageSkeleton from '../components/anonymous/MessageSkeleton.vue'
+  import NotifAlert from '../components/shared/atom/NotifAlert.vue'
 
   export default {
     components: {

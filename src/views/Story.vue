@@ -19,8 +19,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import StoryCard from '../components/StoryCard.vue'
-import StoryCardSkeleton from '../components/StoryCardSkeleton.vue'
+import StoryCard from '../components/story/StoryCard.vue'
+import StoryCardSkeleton from '../components/story/StoryCardSkeleton.vue'
 
 export default {
   components: {

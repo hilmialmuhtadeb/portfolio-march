@@ -15,8 +15,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import ProjectCard from '../components/ProjectCard.vue'
-import ProjectCardSkeleton from '../components/ProjectCardSkeleton.vue'
+import ProjectCard from '../components/project/ProjectCard.vue'
+import ProjectCardSkeleton from '../components/project/ProjectCardSkeleton.vue'
 
 export default {
   components: {

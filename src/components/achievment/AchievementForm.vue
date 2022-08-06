@@ -19,8 +19,8 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-import FormInput from './FormInput.vue'
-import NotifAlert from './NotifAlert.vue'
+import FormInput from '../shared/atom/FormInput.vue'
+import NotifAlert from '../shared/atom/NotifAlert.vue'
 
 export default {
   components: {

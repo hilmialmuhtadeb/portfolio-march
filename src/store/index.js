@@ -4,7 +4,8 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const BASE_URL = 'https://api-portfolio-hilmi.herokuapp.com'
+// const BASE_URL = 'https://api-portfolio-hilmi.herokuapp.com'
+const BASE_URL = 'http://localhost:3000'
 const STORIES_API_URL = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40hilmialmuhtadeb'
 
 export default new Vuex.Store({

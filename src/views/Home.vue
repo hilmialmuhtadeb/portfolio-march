@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import ContactCard from '../components/ContactCard.vue'
+import ContactCard from '../components/home/ContactCard.vue'
 import contacts from "../data/contacts.json"
 
 export default {
