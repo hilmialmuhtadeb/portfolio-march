@@ -80,7 +80,7 @@ export default {
     &__thumbnail {
       img {
         width: 100%;
-        height: 100%;
+        height: 12em;
         object-fit: cover;
       }
     }
