@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import { getThumbnail } from '@/helpers'
 
 Vue.use(Vuex)
 
@@ -82,7 +83,14 @@ export default new Vuex.Store({
     getStories ({commit}) {
       axios.get(STORIES_API_URL)
         .then(response => {
-          commit('setStories', response.data.items)
+          const stories = response.data.items
+          const mappedStories = stories.map(story => {
+            return {
+              ...story,
+              thumbnail: getThumbnail(story.content)
+            }
+          })
+          commit('setStories', mappedStories)
         })
     },
     getAchievments ({commit}) {

@@ -1,7 +1,7 @@
 <template>
   <div class="stories">
     <template v-if="isStoriesLoaded">
-      <div v-if="stories.length > 0">
+      <div class="stories__wrapper" v-if="stories.length > 0">
         <story-card v-for="story in stories" :key="story.url" :story="story" />
       </div>
       <div v-else>
@@ -49,6 +49,11 @@ export default {
   .stories {
     padding: 4em 0;
     gap: 2em;
+
+    &__wrapper {
+      display: grid;
+      gap: 1em;
+    }
   }
   @media screen and (max-width: 768px) {
     .stories {
