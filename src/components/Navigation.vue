@@ -21,9 +21,6 @@
       <li>
         <router-link to="/stories">STORIES</router-link>
       </li>
-      <li>
-        <router-link to="/anonymous">ANONYMOUS</router-link>
-      </li>
     </ul>
   </nav>
 </template>
